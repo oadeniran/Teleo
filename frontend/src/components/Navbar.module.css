@@ -1,0 +1,215 @@
+.header {
+  height: 70px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--teleo-dark);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  color: var(--teleo-green);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--teleo-green);
+}
+
+/* --- NEW PROFILE STYLES --- */
+
+.profileSection {
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid #eee;
+  position: relative; /* Anchor for absolute dropdown */
+}
+
+.avatarButton {
+  background: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatarButton:hover {
+  background-color: #f9fafb;
+}
+
+.avatarCircle {
+  width: 40px;
+  height: 40px;
+  background-color: #f0fdf9;
+  border: 1px solid #ccfbf1;
+  color: #065f46;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.userInfo {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.userRole {
+  font-size: 11px;
+  color: #888;
+}
+
+/* --- CUSTOM DROPDOWN MENU --- */
+.dropdownMenu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 220px;
+  background: white;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: fadeIn 0.2s ease;
+}
+
+.dropdownLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #999;
+  padding: 8px 12px;
+  font-weight: bold;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.dropdownItem:hover {
+  background-color: #f3f4f6;
+}
+
+.activeItem {
+  background-color: #f0fdf9;
+  color: var(--teleo-green);
+}
+
+/* --- NETWORK TOGGLE SWITCH --- */
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 140px;
+  position: relative;
+  /* Default Sepolia Colors */
+  background: #e6fffa;
+  border: 1px solid #b2f5ea;
+}
+
+.toggleContainer.mainnet {
+  background: #eee;
+  border: 1px solid #ddd;
+}
+
+.togglePill {
+  position: absolute;
+  width: 64px;
+  height: 24px;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); /* Smooth slide */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* Default Sepolia Position & Color */
+  left: 4px;
+  background: #00D084;
+}
+
+.toggleContainer.mainnet .togglePill {
+  left: 70px;
+  background: #627EEA; /* ETH Blue */
+}
+
+.toggleText {
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  transition: color 0.3s;
+  user-select: none;
+}
+
+/* Text Colors based on state */
+/* Sepolia State (Default) */
+.toggleContainer:not(.mainnet) .sepoliaText { color: #fff; }
+.toggleContainer:not(.mainnet) .mainnetText { color: #006d4e; opacity: 0.5; }
+
+/* Mainnet State */
+.toggleContainer.mainnet .sepoliaText { color: #999; opacity: 0.5; }
+.toggleContainer.mainnet .mainnetText { color: #fff; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

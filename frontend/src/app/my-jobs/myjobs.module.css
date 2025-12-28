@@ -1,0 +1,187 @@
+/* src/app/my-jobs/myjobs.module.css */
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.pageTitle {
+  margin-bottom: 20px;
+  color: var(--teleo-dark);
+  font-size: 32px;
+}
+
+/* --- TABS --- */
+.tabContainer {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+}
+
+.tabButton {
+  padding: 10px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tabButton.active {
+  border-bottom-color: var(--teleo-green);
+  font-weight: bold;
+  color: var(--teleo-dark);
+}
+
+.tabButton:hover:not(.active) {
+  color: var(--teleo-green);
+}
+
+/* --- LIST & CARDS --- */
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.emptyState {
+  padding: 40px;
+  text-align: center;
+  color: #888;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.jobCard {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: box-shadow 0.2s;
+}
+
+.jobCard:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.jobHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jobTitle {
+  margin: 0;
+  font-size: 18px;
+  color: var(--teleo-dark);
+}
+
+.jobMeta {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.jobMeta strong {
+  color: var(--teleo-green);
+}
+
+/* --- APPLICANTS SECTION --- */
+.applicantsBox {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f0fdf9;
+  border-radius: 8px;
+  border: 1px solid #ccfbf1;
+}
+
+.applicantsTitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: #065f46;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.noApplicants {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.noApplicantsText {
+  font-size: 13px;
+  color: #666;
+}
+
+.assignSelect {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  font-size: 13px;
+  background-color: #fff;
+  cursor: pointer;
+  color: #475569;
+  appearance: none; /* Removes default ugly arrow in some browsers */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 10px auto;
+  padding-right: 30px;
+}
+
+.assignSelect:hover {
+  border-color: var(--teleo-green);
+}
+
+.applicantsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.applicantTag {
+  background: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.hireBtn {
+  border: none;
+  background: var(--teleo-green);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.hireBtn:hover {
+  background: #04b373;
+}
+
+.actionArea {
+  text-align: right;
+}
+
+.viewBtn {
+  font-size: 14px;
+  padding: 8px 16px;
+}

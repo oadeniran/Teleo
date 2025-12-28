@@ -1,0 +1,166 @@
+/* src/app/create/create.module.css */
+
+.main {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.formContainer {
+  margin-top: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 32px;
+  color: var(--teleo-dark);
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--teleo-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.group {
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.helperText {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--teleo-green);
+  box-shadow: 0 0 0 3px rgba(0, 208, 132, 0.1);
+}
+
+.textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.statusBox {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+.statusLoading {
+  background-color: var(--teleo-light);
+  color: #065f46;
+  border: 1px solid var(--teleo-border);
+}
+
+.statusError {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  min-height: 48px;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+
+.tagContainer:focus-within {
+  border-color: var(--teleo-green);
+  box-shadow: 0 0 0 3px rgba(0, 208, 132, 0.1);
+}
+
+.tagChip {
+  background: #f0fdf9;
+  color: #065f46;
+  border: 1px solid #ccfbf1;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.2s ease;
+}
+
+.removeTagBtn {
+  border: none;
+  background: none;
+  color: #065f46;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.removeTagBtn:hover {
+  opacity: 1;
+  color: #ef4444;
+}
+
+.tagInput {
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 120px;
+  padding: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

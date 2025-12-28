@@ -1,0 +1,329 @@
+.container {
+  /* HORIZONTAL CENTERING */
+  width: 100%;
+  max-width: 1000px; /* Slightly tighter width for better focus */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* VERTICAL SPACING */
+  margin-top: 350px; /* Push it down from the navbar */
+  margin-bottom: 100px; /* Space at the bottom */
+  padding: 0 24px;
+
+  /* LAYOUT */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Split evenly */
+  gap: 60px; /* More breathing room between columns */
+  align-items: start;
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 36px;
+  color: var(--teleo-dark);
+}
+
+.badge {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* --- BUDGET CARD --- */
+.budgetCard {
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--teleo-light);
+  border-radius: 12px;
+  border: 1px solid var(--teleo-border);
+}
+
+.budgetLabel {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #065f46;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.budgetAmount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #059669;
+}
+
+.budgetSubtext {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 5px;
+}
+
+/* --- DESCRIPTION --- */
+.descriptionCard {
+  margin-top: 24px;
+  border: none;
+  background: #f9fafb;
+}
+
+.descriptionText {
+  white-space: pre-wrap;
+  color: #374151;
+  line-height: 1.7;
+}
+
+/* --- SUBMISSION FORM --- */
+.uploadCard {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--teleo-border);
+  height: fit-content;
+}
+
+.uploadBox {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  background-color: #fafafa;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.uploadBox:hover {
+  border-color: var(--teleo-green);
+  background-color: var(--teleo-light);
+}
+
+.fileInput {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* --- NOTES SECTION (The missing part) --- */
+.notesSection {
+  margin-top: 24px;
+}
+
+.notesLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.notesInput {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.notesInput:focus {
+  outline: none;
+  border-color: var(--teleo-green);
+  box-shadow: 0 0 0 3px rgba(0, 208, 132, 0.1);
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.submitBtn:disabled {
+  background-color: #cbd5e1; 
+  color: #64748b; 
+  cursor: not-allowed;
+  transform: none; 
+  box-shadow: none;
+  border: 1px solid #cbd5e1;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.fileName {
+  font-weight: 500;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.removeBtn:hover {
+  color: #ef4444; /* Red on hover */
+  background: #fee2e2;
+}
+
+.applyCard {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.applyTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--teleo-dark);
+}
+
+.applyText {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.applyBtn {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: var(--teleo-dark);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.applyBtn:hover {
+  background-color: #333;
+  transform: translateY(-1px);
+}
+
+.appliedBadge {
+  background-color: #f0fdf9;
+  color: #00D084;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: 1px solid #ccfbf1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.applyBtn:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.historySection {
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.historyTitle {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--teleo-dark);
+}
+
+.historyCard {
+  background: white;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid #ccc;
+}
+
+.historyCard.pass { border-left-color: #00D084; background: #f0fdf9; }
+.historyCard.fail { border-left-color: #ff4444; background: #fff5f5; }
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.historyReason {
+  font-size: 14px;
+  color: #444;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* --- IMPROVED MANUAL ASSIGN (For MyJobs) --- */
+.assignSelectStyled {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 150px;
+}
+
+.assignSelectStyled:hover {
+  border-color: var(--teleo-green);
+}
+
+.assignSelectStyled:focus {
+  outline: none;
+  border-color: var(--teleo-green);
+  box-shadow: 0 0 0 3px rgba(0, 208, 132, 0.1);
+}

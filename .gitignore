@@ -1,0 +1,62 @@
+# =========================
+# GENERAL / SYSTEM
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+tmp/
+venv/
+__pycache__/
+node_modules/
+credentials/
+
+# =========================
+# ENVIRONMENT VARIABLES (CRITICAL)
+# =========================
+# Ignore all .env files across all folders to prevent key leaks
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+frontend/.env
+frontend/.env.local
+contracts/.env
+
+# =========================
+# BACKEND (Python / FastAPI)
+# =========================
+backend/__pycache__/
+backend/*.pyc
+backend/venv/
+backend/.venv/
+backend/env/
+backend/.pytest_cache/
+backend/.coverage
+backend/htmlcov/
+
+# =========================
+# FRONTEND (Next.js / Node)
+# =========================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+frontend/.vercel/
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# =========================
+# CONTRACTS (Foundry / Forge)
+# =========================
+contracts/cache/
+contracts/out/
+contracts/broadcast/
+
+# NOTE: We generally DO NOT ignore 'lib' if you deleted the .git folders inside it
+# because you want to commit those dependencies to your repo.
+contracts/lib/

@@ -1,0 +1,138 @@
+/* src/app/page.module.css */
+
+.container {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.title {
+  font-size: 48px;
+  color: var(--teleo-dark);
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.highlight {
+  color: var(--teleo-green);
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- FEED HEADER --- */
+.feedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.feedTitle {
+  font-size: 24px;
+  color: var(--teleo-dark);
+  margin: 0;
+}
+
+.refreshBtn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+}
+
+.refreshBtn:hover {
+  color: var(--teleo-green);
+}
+
+/* --- ALERTS & STATES --- */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+.error {
+  padding: 20px;
+  background: #fff0f0;
+  color: #d32f2f;
+  border-radius: 8px;
+  border: 1px solid #ffcdd2;
+  margin-bottom: 20px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+}
+
+.emptyIcon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.emptyTitle {
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.emptyText {
+  color: #888;
+  margin-bottom: 20px;
+}
+
+/* --- NEW MAINNET NOTICE --- */
+.mainnetNotice {
+  padding: 30px;
+  background: #ebf8ff;
+  border: 1px solid #bee3f8;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  color: #2c5282;
+  animation: fadeIn 0.3s ease;
+}
+
+.noticeTitle {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noticeText {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
