@@ -16,13 +16,13 @@ class JobModel(BaseModel):
     amount_mnee: float
     client_address: str
     client_name: str     
-    tags: List[str]     
+    tags: Optional[List[str]] = []   
     freelancer_address: Optional[str] = None
-    status: str = "OPEN"
-    created_at: str
+    status: Optional[str] = "OPEN"
+    created_at: Optional[str] = None
     applicants: Optional[List[str]] = []
     freelancer_name: Optional[str] = None
-    chain_id: Optional[str] = None
+    chain_id: Optional[int] = None
     
     model_config = ConfigDict(
         populate_by_name=True,

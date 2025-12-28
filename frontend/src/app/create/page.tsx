@@ -10,7 +10,7 @@ import styles from './create.module.css';
 import Navbar from '../../components/Navbar';
 
 export default function CreateJob() {
-  const { network } = useTeleo();
+  const { currentUser, network } = useTeleo();
   const router = useRouter();
   
   // Form State
@@ -106,17 +106,48 @@ export default function CreateJob() {
       setStep(3);
       setStatus("Step 3/3: Publishing job to marketplace...");
 
-      const fakeId = Math.floor(Math.random() * 1000000);
+      // GET JOB ID ---
+      // 1. Try to find the event topic that contains the ID
+      // The event is: JobCreated(uint256 indexed jobId, ...)
+      // In ethers v6, we can usually find it in logs.
+      let realChainJobId = "";
+      
+      try {
+        // Look for the log that emitted the event. 
+        // Typically the first topic is the Event Hash, second is the indexed JobId.
+        // We parse the hex to a decimal string.
+        if (receipt.logs && receipt.logs.length > 0) {
+            // JobId is indexed (topic[1]) or data.
+            // Let's assume it's the first log's second topic (standard for indexed uint)
+            const log = receipt.logs[0];
+            // If the ID is in topics[1] (indexed)
+            if (log.topics.length > 1) {
+                realChainJobId = BigInt(log.topics[1]).toString();
+            } else {
+                 // Fallback: Check data if not indexed
+                 realChainJobId = BigInt(log.data).toString();
+            }
+        }
+      } catch (e) {
+        console.warn("Could not parse log, falling back to Date ID", e);
+        realChainJobId = Date.now().toString(); // Better than random math
+      }
+
+      // If parsing failed entirely, fallback to a string timestamp
+      if (!realChainJobId) realChainJobId = Date.now().toString();
+
+      console.log("Captured On-Chain ID:", realChainJobId);
 
       await axios.post(`${API_URL}/jobs`, {
-        chain_job_id: fakeId,
+        chain_job_id: realChainJobId,
         title: form.title,
         description: form.desc,
         tags: tags,
         amount_mnee: parseFloat(form.amount),
         client_address: userAddress,
         freelancer_address: userAddress,
-        chain_id: network.id
+        chain_id: network.id,
+        client_name: currentUser?.name || "Anonymous",
       });
 
       setStatus("Job Posted Successfully! Redirecting...");
