@@ -9,7 +9,7 @@ contract TeleoEscrow is Ownable {
     // The MNEE Stablecoin Contract Address
     IERC20 public mneeToken;
     
-    // The address of your Backend AI (The "Judge")
+    // The address of Backend AI (The "Judge")
     address public judgeAddress;
 
     struct Job {
@@ -17,15 +17,15 @@ contract TeleoEscrow is Ownable {
         address client;
         address freelancer;
         uint256 amount;
-        string description; // "Write a Python script for..."
-        bool isSettled;     // True if paid out or refunded
-        bool isApproved;    // True if work was accepted
+        string description;
+        bool isSettled;    
+        bool isApproved;  
     }
 
     uint256 public nextJobId;
     mapping(uint256 => Job) public jobs;
 
-    // Events for your Backend to listen to
+    // Events
     event JobCreated(uint256 indexed jobId, address client, address freelancer, uint256 amount);
     event JobCompleted(uint256 indexed jobId, string verdict);
     event JobRefunded(uint256 indexed jobId);

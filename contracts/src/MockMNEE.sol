@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MockMNEE is ERC20 {
     constructor() ERC20("Mock MNEE", "mMNEE") {
-        // Mint 1,000,000 tokens to yourself so you can test
+        // Mint 1,000,000 tokens for testing
         _mint(msg.sender, 1000000 * 10**18);
     }
 }
