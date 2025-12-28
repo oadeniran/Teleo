@@ -1,19 +1,23 @@
 #!/bin/sh
 
-# 1. Recreate the public/env.js file
-# We use the 'public' directory because Next.js serves static files from there.
+# 1. Start the file
 echo "window.env = {" > ./public/env.js
 
-# 2. Append variables
-# We intentionally explicitly list them for security (so we don't leak server secrets)
+# 2. Append YOUR ACTUAL TELEO VARIABLES
 echo "  NEXT_PUBLIC_API_URL: \"$NEXT_PUBLIC_API_URL\"," >> ./public/env.js
-echo "  NEXT_PUBLIC_AGENT_ID_ROUTER: \"$NEXT_PUBLIC_AGENT_ID_ROUTER\"," >> ./public/env.js
-echo "  NEXT_PUBLIC_AGENT_ID_DEBATER: \"$NEXT_PUBLIC_AGENT_ID_DEBATER\"," >> ./public/env.js
-echo "  NEXT_PUBLIC_AGENT_ID_COACH: \"$NEXT_PUBLIC_AGENT_ID_COACH\"," >> ./public/env.js
 
+echo "  NEXT_PUBLIC_MNEE_TOKEN_ADDRESS_MAINNET: \"$NEXT_PUBLIC_MNEE_TOKEN_ADDRESS_MAINNET\"," >> ./public/env.js
+echo "  NEXT_PUBLIC_MNEE_TOKEN_ADDRESS_SEPOLIA: \"$NEXT_PUBLIC_MNEE_TOKEN_ADDRESS_SEPOLIA\"," >> ./public/env.js
+
+echo "  NEXT_PUBLIC_CONTRACT_ADDRESS_MAINNET: \"$NEXT_PUBLIC_CONTRACT_ADDRESS_MAINNET\"," >> ./public/env.js
+echo "  NEXT_PUBLIC_CONTRACT_ADDRESS_SEPOLIA: \"$NEXT_PUBLIC_CONTRACT_ADDRESS_SEPOLIA\"," >> ./public/env.js
+
+echo "  NEXT_PUBLIC_SEPOLIA_RPC: \"$NEXT_PUBLIC_SEPOLIA_RPC\"," >> ./public/env.js
+echo "  NEXT_PUBLIC_MAINNET_RPC: \"$NEXT_PUBLIC_MAINNET_RPC\"," >> ./public/env.js
+
+# 3. Close the object
 echo "};" >> ./public/env.js
 
-# 3. Start the Next.js App
-# "exec" ensures the process signal handling works correctly
+# Start the App
 echo "Starting Next.js..."
 exec npm start
