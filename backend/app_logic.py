@@ -38,10 +38,13 @@ async def submit_work(
     db_job = await db.jobs.find_one({"chain_job_id": jobId})
     if not db_job:
         return
+    # print(db_job)
 
     job_details = await run_in_threadpool(get_job_details, int(jobId))
     if not job_details:
         return {"status": "FAIL", "reason": "Job not found on chain"}
+    
+    # print(f"📝 Job Details fetched: {job_details}")
 
     # 4. AI REVIEW
     print("⚖️  AI Judge is reviewing...")
@@ -150,4 +153,7 @@ async def apply_to_job(jobId, applicantName):
 async def get_submissions(jobId: str):
     db = get_database()
     cursor = db.submissions.find({"chain_job_id": jobId}).sort("created_at", -1)
-    return await cursor.to_list(length=100)
+    job_list = await cursor.to_list(length=100)
+    for job in job_list:
+        job["_id"] = str(job["_id"])
+    return job_list

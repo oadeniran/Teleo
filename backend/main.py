@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Form, File, UploadFile
 from typing import List
-from dtos import JobModel
+from dtos import JobModel, Optional
 from app.constants import GOD_USERS
 import app_logic
 from app.database import connect_to_mongo, close_mongo_connection
@@ -37,7 +37,7 @@ def read_root():
 @app.post("/submit-work")
 async def submit_work_endpoint(
     jobId: str = Form(...),
-    notes: str = Form(...),
+    notes: Optional[str] = Form(None),
     files: List[UploadFile] = File(default=[])
 ):
     try:

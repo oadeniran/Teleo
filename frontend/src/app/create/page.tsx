@@ -74,7 +74,11 @@ export default function CreateJob() {
       ], signer);
 
       const teleoContract = new ethers.Contract(network.escrowContract, [
-        "function createJob(address _freelancer, uint256 _amount, string memory _description) external"
+        // 1. The Function
+        "function createJob(address _freelancer, uint256 _amount, string memory _description) external",
+        
+        // 2. The Event
+        "event JobCreated(uint256 indexed jobId, address client, address freelancer, uint256 amount)"
       ], signer);
 
       const amountWei = ethers.parseEther(form.amount || "10");
@@ -107,36 +111,32 @@ export default function CreateJob() {
       setStatus("Step 3/3: Publishing job to marketplace...");
 
       // GET JOB ID ---
-      // 1. Try to find the event topic that contains the ID
-      // The event is: JobCreated(uint256 indexed jobId, ...)
-      // In ethers v6, we can usually find it in logs.
       let realChainJobId = "";
-      
-      try {
-        // Look for the log that emitted the event. 
-        // Typically the first topic is the Event Hash, second is the indexed JobId.
-        // We parse the hex to a decimal string.
-        if (receipt.logs && receipt.logs.length > 0) {
-            // JobId is indexed (topic[1]) or data.
-            // Let's assume it's the first log's second topic (standard for indexed uint)
-            const log = receipt.logs[0];
-            // If the ID is in topics[1] (indexed)
-            if (log.topics.length > 1) {
-                realChainJobId = BigInt(log.topics[1]).toString();
-            } else {
-                 // Fallback: Check data if not indexed
-                 realChainJobId = BigInt(log.data).toString();
-            }
+
+      // 1. Loop through ALL logs (Approval, Transfer, JobCreated...)
+      for (const log of receipt.logs) {
+        try {
+          // 2. Parse the log using the Contract Interface
+          // This automatically handles indexed vs non-indexed fields based on ABI
+          const parsed = teleoContract.interface.parseLog(log);
+          
+          // 3. Check if this is the event we want
+          if (parsed && parsed.name === "JobCreated") {
+             // 4. Extract the ID (ethers returns BigInt, convert to string)
+             realChainJobId = parsed.args.jobId.toString();
+             break; // Found it, stop looking
+          }
+        } catch (e) {
+          // This log belongs to another contract (like MNEE token), ignore it
+          continue;
         }
-      } catch (e) {
-        console.warn("Could not parse log, falling back to Date ID", e);
-        realChainJobId = Date.now().toString(); // Better than random math
       }
 
-      // If parsing failed entirely, fallback to a string timestamp
-      if (!realChainJobId) realChainJobId = Date.now().toString();
-
-      console.log("Captured On-Chain ID:", realChainJobId);
+      // Fallback only if absolutely necessary
+      if (!realChainJobId) {
+        console.warn("Could not find JobCreated event. Using timestamp fallback.");
+        realChainJobId = Date.now().toString();
+      }
 
       await axios.post(`${API_URL}/jobs`, {
         chain_job_id: realChainJobId,
