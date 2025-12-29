@@ -213,3 +213,53 @@
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+    padding: 12px 0;
+    position: relative; /* Unstick on mobile if it takes too much vertical space */
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  /* Stack Logo and Network Toggle */
+  .container > div:first-child {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Make Links Scrollable or Smaller */
+  .navLinks {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    overflow-x: auto; /* Allow scroll if needed on tiny screens */
+    padding-bottom: 4px; /* Space for scrollbar */
+  }
+
+  .link {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Adjust Profile Section */
+  .profileSection {
+    margin-left: 0;
+    padding-left: 10px;
+    border-left: 1px solid #eee;
+  }
+  
+  .userName, .userRole {
+    display: none; /* Hide name on mobile to save space, show only avatar */
+  }
+  
+  .avatarButton {
+    padding: 0;
+  }
+}

@@ -327,3 +327,28 @@
   border-color: var(--teleo-green);
   box-shadow: 0 0 0 3px rgba(0, 208, 132, 0.1);
 }
+
+@media (max-width: 850px) {
+  .container {
+    grid-template-columns: 1fr; /* Stack columns */
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  /* Reorder if you want Submission box on top, 
+     but default stacking (Info first) is usually fine */
+  
+  .budgetAmount {
+    font-size: 24px;
+  }
+  
+  /* Make history card compact */
+  .historyHeader {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

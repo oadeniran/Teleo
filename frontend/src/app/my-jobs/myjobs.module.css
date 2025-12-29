@@ -185,3 +185,50 @@
   font-size: 14px;
   padding: 8px 16px;
 }
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 24px;
+  }
+
+  /* Make Tabs Horizontal Scrollable */
+  .tabContainer {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px; /* Hide ugly scrollbar clipping */
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .tabButton {
+    font-size: 14px;
+  }
+
+  /* Stack Job Card Content */
+  .jobCard {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .actionArea {
+    width: 100%;
+    text-align: left; /* Re-align button to left */
+    margin-top: 0;
+  }
+
+  .viewBtn {
+    width: 100%; /* Full width button on mobile */
+    text-align: center;
+  }
+  
+  /* Applicant Grid */
+  .applicantsGrid {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .applicantTag {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

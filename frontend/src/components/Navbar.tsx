@@ -34,6 +34,8 @@ export default function Navbar() {
             <span>◈</span> TELEO
           </Link>
 
+          <Link href="/about" className={styles.link}>About</Link>
+
           {/* Clean Network Toggle */}
           <div 
             className={`${styles.toggleContainer} ${isMainnet ? styles.mainnet : ''}`}
