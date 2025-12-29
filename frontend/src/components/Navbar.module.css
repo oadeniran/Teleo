@@ -219,47 +219,53 @@
   .header {
     height: auto;
     padding: 12px 0;
-    position: relative; /* Unstick on mobile if it takes too much vertical space */
   }
 
   .container {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     padding: 0 16px;
   }
 
-  /* Stack Logo and Network Toggle */
   .container > div:first-child {
     width: 100%;
     justify-content: space-between;
   }
 
-  /* Make Links Scrollable or Smaller */
   .navLinks {
     width: 100%;
     justify-content: space-between;
-    gap: 12px;
-    overflow-x: auto; /* Allow scroll if needed on tiny screens */
-    padding-bottom: 4px; /* Space for scrollbar */
+    gap: 8px; 
+    overflow: visible; 
+    padding-bottom: 0;
+    flex-wrap: nowrap;
   }
 
   .link {
     font-size: 13px;
     white-space: nowrap;
+    padding: 4px;
   }
 
-  /* Adjust Profile Section */
   .profileSection {
     margin-left: 0;
-    padding-left: 10px;
+    padding-left: 8px;
     border-left: 1px solid #eee;
+    position: relative;
   }
   
   .userName, .userRole {
-    display: none; /* Hide name on mobile to save space, show only avatar */
+    display: none;
   }
   
   .avatarButton {
     padding: 0;
+  }
+
+  .dropdownMenu {
+    right: -10px;
+    top: 45px;
+    width: 200px;
+    z-index: 1000;
   }
 }

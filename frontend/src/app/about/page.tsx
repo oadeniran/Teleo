@@ -94,7 +94,7 @@ export default function About() {
           <div className={styles.techStack}>
             <span className={styles.techBadge}>MNEE Stablecoin</span>
             <span className={styles.techBadge}>Ethereum Sepolia</span>
-            <span className={styles.techBadge}>OpenAI GPT-4</span>
+            <span className={styles.techBadge}>Gemini</span>
             <span className={styles.techBadge}>Next.js 14</span>
             <span className={styles.techBadge}>Python FastAPI</span>
             <span className={styles.techBadge}>Solidity</span>
