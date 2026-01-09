@@ -1,19 +1,47 @@
 import json
 from web3 import Web3
-from app.constants import TELEO_ESCROW_ADDRESS, TELEO_ESCROW_ABI
-from init_env import RPC_URL, PRIVATE_KEY
+from app.constants import TELEO_ESCROW_ADDRESS, TELEO_ESCROW_ABI, TELEO_ESCROW_ADDRESS_MAINNET
+from init_env import RPC_URL, PRIVATE_KEY, RPC_URL_MAINNET
 
 if not RPC_URL or not PRIVATE_KEY:
     raise ValueError("Missing SEPOLIA_RPC_URL or JUDGE_PRIVATE_KEY in .env")
 
 w3 = Web3(Web3.HTTPProvider(RPC_URL))
+w3_mainnet = Web3(Web3.HTTPProvider(RPC_URL_MAINNET)) if RPC_URL_MAINNET else None
 
 # 2. Setup the Contract
 contract = w3.eth.contract(address=TELEO_ESCROW_ADDRESS, abi=TELEO_ESCROW_ABI)
+contract_mainnet = w3_mainnet.eth.contract(address=TELEO_ESCROW_ADDRESS_MAINNET, abi=TELEO_ESCROW_ABI) if w3_mainnet else None
 
-def get_job_details(job_id: int):
+CHAINS = {
+    # Sepolia ID
+    11155111: {
+        "w3": w3,
+        "contract": contract,
+        "name": "Sepolia"
+    },
+    # Mainnet ID
+    1: {
+        "w3": w3_mainnet,
+        "contract": contract_mainnet,
+        "name": "Mainnet"
+    }
+}
+
+def get_chain_tools(chain_id: int):
+    tools = CHAINS.get(chain_id)
+    if not tools:
+        # Fallback or Error? For safety, default to Sepolia here
+        print(f"⚠️ Unknown chain_id {chain_id}, defaulting to Sepolia")
+        return CHAINS[11155111] 
+    return tools
+
+def get_job_details(job_id: int, chain_id: int):
     """Reads job data from the blockchain to verify it exists."""
     try:
+        tools = get_chain_tools(chain_id)
+        contract = tools["contract"]
+        w3 = tools["w3"]
         job = contract.functions.jobs(job_id).call()
         # Return a nice dict
         return {
@@ -29,11 +57,15 @@ def get_job_details(job_id: int):
         print(f"Error fetching job: {e}")
         return None
 
-def release_payment(job_id: int):
+def release_payment(job_id: int, chain_id: int):
     """The AI calls this to release money."""
     # 1. Ensure we get the key correctly
     if not PRIVATE_KEY:
         raise Exception("CRITICAL: PRIVATE_KEY not found in env vars!")
+    
+    tools = get_chain_tools(chain_id)
+    w3 = tools["w3"]
+    contract = tools["contract"]
 
     account = w3.eth.account.from_key(PRIVATE_KEY)
     

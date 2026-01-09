@@ -11,6 +11,7 @@ venv/
 __pycache__/
 node_modules/
 credentials/
+local/
 
 # =========================
 # ENVIRONMENT VARIABLES (CRITICAL)
@@ -25,6 +26,7 @@ backend/.env
 frontend/.env
 frontend/.env.local
 contracts/.env
+hh.text
 
 # =========================
 # BACKEND (Python / FastAPI)
@@ -58,6 +60,5 @@ contracts/cache/
 contracts/out/
 contracts/broadcast/
 
-# NOTE: We generally DO NOT ignore 'lib' if you deleted the .git folders inside it
-# because you want to commit those dependencies to your repo.
+
 contracts/lib/

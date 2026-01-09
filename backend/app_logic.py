@@ -40,7 +40,9 @@ async def submit_work(
         return
     # print(db_job)
 
-    job_details = await run_in_threadpool(get_job_details, int(jobId))
+    job_chain_id = int(db_job.get("chain_id", 11155111))
+
+    job_details = await run_in_threadpool(get_job_details, int(jobId), job_chain_id)
     if not job_details:
         return {"status": "FAIL", "reason": "Job not found on chain"}
     
@@ -59,7 +61,7 @@ async def submit_work(
     if review['verdict'] == 'PASS':
         try:
             print("💸 Initiating Payout...")
-            tx_hash = await run_in_threadpool(release_payment, int(jobId))
+            tx_hash = await run_in_threadpool(release_payment, int(jobId), job_chain_id)
             print(f"✅ Payout Sent! Hash: {tx_hash}")
             await db.jobs.update_one(
                 {"chain_job_id": jobId},

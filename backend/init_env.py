@@ -5,6 +5,7 @@ import requests
 import json
 
 RPC_URL = os.getenv("SEPOLIA_RPC_URL")
+RPC_URL_MAINNET= os.getenv("MAINNET_RPC_URL")
 PRIVATE_KEY = os.getenv("JUDGE_PRIVATE_KEY")
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 JSON_URL = os.getenv("JSON_URL")

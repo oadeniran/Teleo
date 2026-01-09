@@ -1,0 +1,141 @@
+# ◈ Teleo: The First AI-Arbitrated Freelance Marketplace
+
+![License](https://img.shields.io/badge/license-MIT-green)
+![Network](https://img.shields.io/badge/Network-Ethereum%20Sepolia%20%7C%20Mainnet-blue)
+![Stack](https://img.shields.io/badge/Stack-Next.js%20%7C%20FastAPI%20%7C%20Solidity-orange)
+![Token](https://img.shields.io/badge/Powered%20By-MNEE%20Stablecoin-00D084)
+
+**Teleo** (Greek for *Purpose/End Goal*) is a decentralized marketplace that removes the "Middleman Tax" from the gig economy. By replacing human mediation with **Smart Contracts** and **AI Agents**, we guarantee that freelancers get paid instantly for verified work, and clients never pay for ghosting.
+
+---
+
+## 💡 Inspiration
+The gig economy is broken by a lack of trust. Freelancers fear non-payment after delivery, while Clients fear paying for subpar results. Traditional platforms (Upwork, Fiverr) try to fix this with human mediation, but that leads to high fees (20%+), slow disputes (weeks), and bias.
+
+We asked: *What if we replaced the middleman with Code?*
+
+## 🚀 Key Features
+
+### 1. Smart Escrow (MNEE Powered)
+Funds are not held by a company. They are locked in a **Smart Contract** on Ethereum. We strictly use the **MNEE Stablecoin** to ensure payouts are stable and programmatic.
+
+### 2. AI Judge & Arbitration
+Instead of a human manager, an **AI Agent (Gemini)** reviews the work.
+- **Code:** It runs unit tests and checks logic.
+- **Copywriting:** It checks tone, length, and requirements.
+- **More:** Complex deliverable requirements is part of teh pipeline for future development
+- **Verdict:** If the AI says "PASS", the Smart Contract *automatically* releases funds. No permission needed (In a more engrossing real world scenario, there can be a 24-hr dispute window whee client can dispute the verdict, however for demo, we model automatic payment).
+
+### 3. "God Mode" Simulation
+For this hackathon, we built a unique **simulation layer**. Judges can toggle between "Client" (Neeraj) and "Freelancer" (Samir) profiles instantly using a single wallet. This allows you to test the full **Job → Work → AI Verification → Payment** lifecycle in seconds without needing multiple accounts.
+
+---
+
+## ⚙️ How it's Built
+
+| Component | Tech Stack | Description |
+| :--- | :--- | :--- |
+| **Frontend** | Next.js 14, Ethers.js | Responsive UI with Mobile support and Runtime Config. |
+| **Backend** | Python FastAPI | Acts as the "Oracle". Fetches job requirements, runs AI analysis, and signs on-chain verdicts. |
+| **Smart Contract** | Solidity (Foundry) | Handles Escrow, Locking, and releasing MNEE tokens. |
+| **Database** | MongoDB | Indexes blockchain events for features like "Submission History" and "Tag Search". |
+| **AI** | Gemini | The reasoning engine that evaluates deliverables against the job description. |
+
+---
+
+## 🧪 How to Test (God Mode)
+
+**No real funds required.** Follow this flow to test the app on Sepolia Testnet:
+
+1.  **Connect Wallet:** Click "Connect" (Use any Metamask wallet).
+2.  **Select Identity:** Use the Navbar dropdown to switch to **"Neeraj" (Client)**.
+3.  **View Jobs:** Go to "My Jobs" > "Created". You will see seeded jobs.
+4.  **Switch Identity:** Switch to **"Samir" (Freelancer)**.
+5.  **Submit Work:** Go to "My Jobs" > "Assigned to Me". Click **Submit Work**.
+    * *Tip: Use the "Easy Mode" prompts (e.g., write a Python Hello World script) to ensure a PASS verdict.*
+6.  **Watch the Magic:** The AI Agent will verify your file, approve it, and you will see the transaction hash for your payout!
+
+---
+
+## 🌐 Mainnet Integration
+Teleo is production-ready. We have deployed our contracts to Ethereum Mainnet and integrated with the official MNEE token.
+
+- **Teleo Escrow (Mainnet):** [`0xC24Ca92955eE1Fe6975689F84D261Ee873C5B909`](https://etherscan.io/address/0xC24Ca92955eE1Fe6975689F84D261Ee873C5B909)
+- **MNEE Token (Mainnet):** [`0x8ccedbAe4916b79da7F3F612EfB2EB93A2bFD6cF`](https://etherscan.io/token/0x8ccedbAe4916b79da7F3F612EfB2EB93A2bFD6cF)
+
+*Toggle the switch in the Navbar to **"Mainnet"** to interact with the real contracts.*
+
+---
+
+## 🛠️ Local Installation
+
+### Prerequisites
+- Node.js 18+
+- Python 3.10+
+- MongoDB (Local or Atlas)
+- Metamask Wallet
+
+### 1. Clone & Install
+```bash
+git clone [https://github.com/yourusername/teleo.git](https://github.com/yourusername/teleo.git)
+cd teleo
+
+```
+
+### 2. Backend Setup
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+
+```
+
+*Create a `.env` file in `/backend` with:*
+
+```ini
+MONGO_URI=mongodb://localhost:27017
+OPENAI_API_KEY=sk-...
+PRIVATE_KEY=your_deployer_private_key
+SEPOLIA_RPC_URL=[https://sepolia.infura.io/v3/](https://sepolia.infura.io/v3/)...
+CONTRACT_ADDRESS_SEPOLIA=0x...
+MNEE_TOKEN_ADDRESS_SEPOLIA=0x...
+
+```
+
+*Run the server:*
+
+```bash
+uvicorn app.main:app --reload
+
+```
+
+### 3. Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+
+```
+
+*Open [http://localhost:3000*](https://www.google.com/search?q=http://localhost:3000)
+
+---
+
+## 🚧 Challenges & Learnings
+
+* **Event Log Parsing:** We initially struggled to sync the "Job ID" between our database and the Blockchain. The script was grabbing the `Amount` (53 ETH) instead of the `ID` from the event logs. We fixed this by implementing strict ABI parsing using `contract.interface.parseLog`.
+* **Azure & Docker:** Deploying Next.js to Azure broke our contract connections because environment variables are baked in at build time. We engineered a custom `entrypoint.sh` script to inject Azure App Settings into the browser at runtime (`window.env`), keeping our secrets safe while allowing dynamic configuration.
+
+## 🔮 What's Next?
+
+1. **Real Auth:** Moving from God Mode to real Real Auth like "Sign-In with Ethereum" profiles.
+2. **More complex deliverables and Milestones:** Expanding the AI to handle more like analyze video content for creator jobs. Expand the contract to support partial releases for long-term projects and a lot more.
+
+---
+
+### License
+
+MIT © Teleo
