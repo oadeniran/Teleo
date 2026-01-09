@@ -73,11 +73,11 @@ export default function Home() {
           )}
 
           {/* --- MAINNET EMPTY STATE (The New Disclaimer) --- */}
-          {!loading && !error && network.id === 1 && jobs.length === 0 && (
+          {!loading && !error && network.id === 1 && jobs.length < 10 && (
             <div className={styles.mainnetNotice}>
               <h3 className={styles.noticeTitle}>🌐 You are on Ethereum Mainnet</h3>
               <p className={styles.noticeText}>
-                 The marketplace is currently empty on Mainnet. <br/>
+                 The marketplace is currently Scanty on Mainnet. <br/>
                  <strong>For the Hackathon Demo:</strong> Please toggle the switch in the navbar back to <strong>SEPOLIA</strong> to access the "God Mode" with 25+ seeded jobs and AI Agents ready to test.
               </p>
             </div>
